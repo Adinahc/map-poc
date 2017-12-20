@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import AutoCompleteLocation from './autoCompleteLocation';
 import ResultList from './resultList';
+import {selectLocation} from '../actions/index';
+import {bindActionCreators} from 'redux';
 
 class Map extends Component {
     componentDidMount() {
@@ -23,19 +25,21 @@ class Map extends Component {
                 marker.content = element.LocationName + '<br />' + element.LocationAddress + '<br />' + element.LocationCity + ', ' + element.LocationState;
                 marker.key = element.LocationAddress;
                 marker.infowindow = this.infowindow;   
-                marker.test = this.props.selectLocation;
+                marker.selectLocation = this.props.selectLocation;
                 marker.addListener('click', function() {     
-                    this.test(this.key);
                     this.infowindow.setContent(this.content);
                     this.infowindow.open(this.map, marker);
-                   //console.log(this.selectLocation);
-                    //this.selectLocation(this.key);
-                   //this.map.setCenter(this.position);
+                    this.selectLocation(this.key);
                 });                              
                 bounds.extend(markerCoords);                  
             });
             this.map.fitBounds(bounds); 
         }
+        else {
+            this.markers.forEach(element => {    
+                element.setMap(null);                    
+            });                
+        }       
     }  
 
     initMap = () => {
@@ -43,6 +47,9 @@ class Map extends Component {
             center: this.props.coordinates,
             zoom: 16
         });
+        this.infowindow = new google.maps.InfoWindow({
+            content: 'asdfsdf'
+        });        
     }
 
     render() {      
@@ -62,6 +69,12 @@ class Map extends Component {
     }
 };
 
+const mapDispatchToProps = dispatch => {
+    return (
+        bindActionCreators({selectLocation:selectLocation}, dispatch)
+    );
+}
+
 function mapStateToProps(state){
     return {
         coordinates: state.coordinates,
@@ -70,4 +83,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps)(Map);
+export default connect(mapStateToProps,mapDispatchToProps)(Map);

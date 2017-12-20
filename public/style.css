@@ -1,41 +1,44 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    height: 100%;
-  }
-  .map {
-    height: 100%;
-    width: 100%;
-    left: 0;
-    position: absolute;
-    z-index: 0;
-  }
-  .locationSearchBox {
-    left: 10px;
-    top: 10px;
-    z-index: 1;
-    position: absolute;
-  }
-  .fullScreen {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-  }
-  .resultList {
-    width: 25%;
-    background-color: white;
-    top: 50px;
-    left: 10px;
-    float: left;
-    position: absolute;
-    z-index: 1;
-    font-size: small;
-  }
-  .resultItem {
-    width: 100%;
-    border: 1px;
-    padding: 15px;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  height: 100%;
+}
+.map {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  z-index: 0;
+}
+.locationSearchBox {
+  left: 10px;
+  top: 10px;
+  z-index: 1;
+  position: absolute;
+}
+.fullScreen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.resultList {
+  width: 15%;
+  top: 50px;
+  left: 50px;
+  float: left;
+  position: absolute;
+  background-color: white;
+  font-size: small;  
+}
+.resultItem {
+  width: 100%;
+  border: 1px;
+  padding: 10px;
+  z-index: 1;
+}
+.selected {
+  background-color: brown;
+}

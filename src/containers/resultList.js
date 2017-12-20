@@ -4,8 +4,9 @@ import _ from 'lodash';
 
 class ResultList extends Component {
   renderListItem(agent) {
+    var className = this.props.selectLocation === agent.LocationAddress ? 'resultItem selected' : 'resultItem';   
     return (
-      <div key={agent.LocationAddress} className="resultItem">
+      <div key={agent.LocationAddress} className={className}>
         {agent.LocationName}<br />
         {agent.LocationAddress}<br />
         {agent.LocationCity}, {agent.LocationState}
@@ -28,7 +29,8 @@ class ResultList extends Component {
 
 function mapStateToProps(state) {
   return {
-    agents: state.results
+    agents: state.results,
+    selectLocation: state.selectLocation
   };
 }
 

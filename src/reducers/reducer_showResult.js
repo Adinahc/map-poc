@@ -1,21 +1,14 @@
 function showResult(state, action) {
     switch (action.type) {
         case 'SHOW_RESULT':
-            state = { 
-                showResult: true
-            };
-            break;
+            return true;
         case 'HIDE_RESULT':
-            state = { 
-                showResult: false
-            };
-            break;         
-      default:
-            state = { 
-                showResult: false
-            };
+            return false;     
+        case 'SELECT_LOCATION':
+            return true;
+        default:
+            return false;
       }
-      return state;
   }
   
   export default showResult;

@@ -16,3 +16,10 @@ export function hideResult() {
 		type: 'HIDE_RESULT'
 	};
 }
+
+export function selectLocation(key) { 
+	return {
+		type: 'SELECT_LOCATION',
+		selectedKey: key
+	}
+}

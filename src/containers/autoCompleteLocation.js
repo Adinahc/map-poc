@@ -31,7 +31,7 @@ class AutoCompleteLocation  extends Component {
 
     onKeyDown(e) {
         //detect if user hit enter
-        if(e.keyCode == 13)
+        if(e.keyCode === 13)
         {       
             if(this.predictions)
             {

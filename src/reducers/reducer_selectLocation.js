@@ -1,16 +1,10 @@
 function selectLocation(state, action) {
     switch (action.type) {
         case 'SELECT_LOCATION':
-            state = { 
-                selectedKey: action.selectedKey
-            };
-            break;     
+            return action.selectedKey;    
         default:
-            state = { 
-                selectedKey: null
-            };
+            return null;
       }
-      return state;
   }
   
   export default selectLocation;

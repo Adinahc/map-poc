@@ -9,6 +9,9 @@ function coordinates(state, action) {
     case 'SHOW_RESULT':
         state = state;
         break;    
+    case 'SELECT_LOCATION':
+        state = state;
+        break;            
     default:
         state = { 
             lat: parseFloat(13.7563),
