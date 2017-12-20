@@ -7,6 +7,7 @@ import ResultList from './resultList';
 class Map extends Component {
     componentDidMount() {
         this.initMap();
+        this.markers = [];
     }
 
     componentWillReceiveProps(nextProps) {
@@ -18,7 +19,19 @@ class Map extends Component {
                 var marker = new google.maps.Marker({
                     position: markerCoords,
                     map: this.map
-                  });
+                });
+                marker.content = element.LocationName + '<br />' + element.LocationAddress + '<br />' + element.LocationCity + ', ' + element.LocationState;
+                marker.key = element.LocationAddress;
+                marker.infowindow = this.infowindow;   
+                marker.test = this.props.selectLocation;
+                marker.addListener('click', function() {     
+                    this.test(this.key);
+                    this.infowindow.setContent(this.content);
+                    this.infowindow.open(this.map, marker);
+                   //console.log(this.selectLocation);
+                    //this.selectLocation(this.key);
+                   //this.map.setCenter(this.position);
+                });                              
                 bounds.extend(markerCoords);                  
             });
             this.map.fitBounds(bounds); 
@@ -26,7 +39,6 @@ class Map extends Component {
     }  
 
     initMap = () => {
-        console.log('initmap');
         this.map = new google.maps.Map(this.refs.map, {
             center: this.props.coordinates,
             zoom: 16
@@ -50,19 +62,10 @@ class Map extends Component {
     }
 };
 
-function loadJS(src)
-{
-    var ref = window.document.getElementsByTagName("script")[0];
-    var script = window.document.createElement("script");
-    script.src = src;
-    script.async = true;
-    ref.parentNode.insertBefore(script, ref);  
-}
-
 function mapStateToProps(state){
     return {
         coordinates: state.coordinates,
-        showResult: state.showResult.showResult,
+        showResult: state.showResult,
         agents: state.results
     };
 }
